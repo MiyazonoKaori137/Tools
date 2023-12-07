@@ -1,0 +1,6 @@
+comtypes
+pywifi==1.1.12
+loguru
+requests
+ping3
+psutil

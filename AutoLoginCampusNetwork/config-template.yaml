@@ -1,0 +1,35 @@
+Account:
+  # user_account: 一卡通号
+  user_account: 242021
+  # operator: 运营商 电信:@telecom 移动:@cmcc 联通:@unicom  
+  # 电信填写1，移动填写2，联通填写3
+  operator: 2
+  # user_password: 一卡通密码
+  user_password: "*****"
+
+# 在networks中添加WiFi信息，ssid为WiFi名称，password为WiFi密码，None为无密码
+# 建议添加多个WiFi信息，以防校园网不稳定，尤其是断电后。如果校园网信号差，则会自动连接列表中存在且已开启的WiFi
+WiFi:
+  NetWorks:
+    Network 1:
+      ssid: JXUST-WLAN
+      password: None
+    Network 2:
+      ssid: ssid of Network 2
+      password: password2
+    Network 3:
+      ssid: ssid of Network 3
+      password: password3
+    Network 4:
+      ssid: ssid of Network 4
+      password: password4
+
+Function:
+  # AutoConnect--->True:运行此程序后会自动连接WiFi,False:运行此程序后不会自动连接WiFi,需要手动连接
+  AutoConnect: True
+  # NetworkSpeed--->True:运行此程序后会自动隔一段时间测速,False:则不会
+  NetworkSpeed: False
+  # EnsureDependencies--->True:运行此程序后会自动安装依赖,False:则不会
+  EnsureDependencies: True
+  # Debug--->True:运行此程序后会在输出较多的日志,False:则输出较少的日志
+  Debug: False

@@ -43,7 +43,9 @@ class AutoLogin():
         self.user_account = urllib.parse.quote(user_account)
         self.operator = urllib.parse.quote(operator)
         self.user_password = urllib.parse.quote(user_password)
-        self.ip = socket.gethostbyname(socket.gethostname())
+        self.s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+        self.s.connect(("8.8.8.8",80))
+        self.ip = self.s.getsockname()[0]
 
         self.mac_address = '-'.join([uuid.UUID(int=uuid.getnode()).hex[-12:].upper()[i:i+2] for i in range(0, 11, 2)])
         self.fake_mac_address = '-'.join([''.join(random.choices([hex(i)[-1].upper() for i in range(16)], k=12)[i:i+2]) for i in range(0, 11, 2)])

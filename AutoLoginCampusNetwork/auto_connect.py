@@ -43,18 +43,12 @@ class AutoLogin():
         self.user_account = urllib.parse.quote(user_account)
         self.operator = urllib.parse.quote(operator)
         self.user_password = urllib.parse.quote(user_password)
-        self.s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-        self.s.connect(("8.8.8.8",80))
-        self.ip = self.s.getsockname()[0]
 
         self.mac_address = '-'.join([uuid.UUID(int=uuid.getnode()).hex[-12:].upper()[i:i+2] for i in range(0, 11, 2)])
         self.fake_mac_address = '-'.join([''.join(random.choices([hex(i)[-1].upper() for i in range(16)], k=12)[i:i+2]) for i in range(0, 11, 2)])
         self.v = random.randint(3000,9999) # 不清楚这个url中的v参数是什么。如果能用代码获取到，就可以不用重启程序就能认证成功
         
         self.wifi = pywifi.PyWiFi()
-
-        self.url_first = f"http://10.17.8.18:801/eportal/portal/login?callback=dr1003&login_method=1&user_account={self.user_account}{self.operator}&user_password={self.user_password}&wlan_user_ip={self.ip}&wlan_user_ipv6=&wlan_user_mac={self.mac_address}&wlan_ac_ip=10.17.4.1&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=3965&lang=zh"
-        self.url_later = f"http://eportal.jxust.edu.cn:801/eportal/portal/login?callback=dr1003&login_method=1&user_account={self.user_account}{self.operator}&user_password={self.user_password}&wlan_user_ip={self.ip}&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=3995&lang=zh"
 
     def get_wifi_name(self,):
         try:
@@ -83,6 +77,10 @@ class AutoLogin():
 
     def login(self,):
         try:
+            self.s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+            self.s.connect(("8.8.8.8",80))
+            self.ip = self.s.getsockname()[0]
+            self.url_first = f"http://10.17.8.18:801/eportal/portal/login?callback=dr1003&login_method=1&user_account={self.user_account}{self.operator}&user_password={self.user_password}&wlan_user_ip={self.ip}&wlan_user_ipv6=&wlan_user_mac={self.mac_address}&wlan_ac_ip=10.17.4.1&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=3965&lang=zh"
             response = requests.get(self.url_first)
             logger.info(response.text)
             if response.text.find("认证成功") != -1:

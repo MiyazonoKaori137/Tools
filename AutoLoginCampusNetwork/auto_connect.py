@@ -8,6 +8,7 @@ import random
 from multiprocessing import Process
 from pip._internal import main as pipmain
 import sys
+import subprocess
 
 all_config = Config("config.yaml")
 
@@ -52,8 +53,9 @@ class AutoLogin():
 
     def get_wifi_name(self,):
         try:
-            iface = self.wifi.interfaces()[0]
-            return iface.scan_results()[0].ssid
+            cmd = "netsh wlan show interfaces"
+            result = subprocess.run(cmd.split(), stdout=subprocess.PIPE)
+            return re.search(r'SSID\s+:\s(.+)', result.stdout.decode('gbk')).group(1).strip()
         except:
             logger.error("获取接口失败")
     

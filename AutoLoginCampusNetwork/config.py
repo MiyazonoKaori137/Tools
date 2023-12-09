@@ -48,3 +48,8 @@ class Config:
             operator_index = yaml_config['Account']['operator']
             operators = ["@telecom", "@cmcc", "@unicom"]
             self.account_config.operator = operators[operator_index-1]
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-y", "--yml_config", type=str, default="config.yaml")
+args, _ = parser.parse_known_args()
+config = Config(args.yml_config)

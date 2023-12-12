@@ -12,17 +12,17 @@ Account:
 WiFi:
   NetWorks:
     Network 1:
-      ssid: JXUST-WLAN
-      password: None
+      ssid: "JXUST-WLAN"
+      password: "None"
     Network 2:
-      ssid: ssid of Network 2
-      password: password2
+      ssid: "ssid of Network 2"
+      password: "password2"
     Network 3:
-      ssid: ssid of Network 3
-      password: password3
+      ssid: "ssid of Network 3"
+      password: "password3"
     Network 4:
-      ssid: ssid of Network 4
-      password: password4
+      ssid: "ssid of Network 4"
+      password: "password4"
 
 Function:
   # AutoConnect--->True:运行此程序后会自动连接WiFi,False:运行此程序后不会自动连接WiFi,需要手动连接

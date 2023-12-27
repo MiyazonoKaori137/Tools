@@ -25,13 +25,7 @@ if all_config.function_config.EnsureDependencies:
         pipmain(["install", "-r", "requirements.txt", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple",
                     "--trusted-host", "pypi.tuna.tsinghua.edu.cn"])
         print("依赖安装完成")
-        import pywifi
-        from pywifi import const
-        from loguru import logger
-        import requests
-        from ping3 import ping
-        import psutil
-    
+
 import pywifi
 from pywifi import const
 from loguru import logger
